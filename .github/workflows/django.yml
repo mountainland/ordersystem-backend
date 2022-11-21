@@ -1,0 +1,17 @@
+name: Django Migration Checker
+on: pull_request
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout the latest code
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 1
+
+      - name: Django Migration Checker
+        uses: hardcoretech/django-migration-checker-action@v1
+        with:
+          app-path: ordersystem/ordersystem
