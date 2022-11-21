@@ -73,9 +73,22 @@ class OrderDetailApiView(APIView):
                 {"res": "Object with Order id does not exists"}, 
                 status=status.HTTP_400_BAD_REQUEST
             )
-        data = {
-            'order': request.data.get('order'), 
-            'ready': request.data.get('ready'), 
+        if not 'order' in request.data:
+            data = {
+            'ready': request.data.get('ready'),
+            'user': request.user.id
+        }
+        
+        elif request.data.get('order') == "":
+            data = {
+                'ready': request.data.get('ready'),
+                'user': request.user.id
+            }
+
+        else:
+            data = {
+            'order': request.data.get('order'),
+            'ready': request.data.get('ready'),
             'user': request.user.id
         }
         serializer = OrderSerializer(instance = Order_instance, data=data, partial = True)
