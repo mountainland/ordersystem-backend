@@ -17,9 +17,8 @@ class Order(models.Model):
 class Product(models.Model):
     price = models.IntegerField()
     name = models.CharField(max_length=50)
-    info = models.JSONField()
     visiblity = models.BooleanField(default = True)
 
     def __str__(self):
-        return json.loads(self.info)
+        return json.loads(self.name)
 

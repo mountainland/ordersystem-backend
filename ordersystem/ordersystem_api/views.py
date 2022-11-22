@@ -134,8 +134,7 @@ class ProductListApiView(APIView):
         '''
         data = {
             'price': request.data.get('price'), 
-            'name': request.data.get('name'), 
-            'info': request.data.get('info'),
+            'name': request.data.get('name'),
             'visiblity': request.data.get('visiblity')
         }
         serializer = ProductSerializer(data=data)
@@ -183,23 +182,16 @@ class ProductDetailApiView(APIView):
                 {"res": "Object with Product id does not exists"}, 
                 status=status.HTTP_400_BAD_REQUEST
             )
-        if not 'Product' in request.data:
+        if not 'name' in request.data and not 'info' in request.data:
             data = {
-            'name': request.data.get('ready'),
-            'user': request.user.id
+            'price': request.data.get('price')
         }
-        
-        elif request.data.get('Product') == "":
-            data = {
-                'ready': request.data.get('ready'),
-                'user': request.user.id
-            }
 
         else:
             data = {
-            'Product': request.data.get('Product'),
-            'ready': request.data.get('ready'),
-            'user': request.user.id
+            'name': request.data.get('name'),
+            'info': request.data.get('info'),
+            'price': request.data.get('price')
         }
         serializer = ProductSerializer(instance = Product_instance, data=data, partial = True)
         if serializer.is_valid():
