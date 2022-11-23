@@ -13,3 +13,12 @@ class Order(models.Model):
 
     def __str__(self):
         return json.loads(self.order)
+
+class Product(models.Model):
+    price = models.IntegerField()
+    name = models.CharField(max_length=50)
+    visiblity = models.BooleanField(default = True)
+
+    def __str__(self):
+        return json.loads(self.name)
+
