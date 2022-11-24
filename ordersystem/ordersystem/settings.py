@@ -12,6 +12,8 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 
 from pathlib import Path
 
+CSRF_TRUSTED_ORIGINS = ["http://*", "https://botsarefuture-jubilant-broccoli-ww5gpr559rc54qp-8000.preview.app.github.dev"]
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -25,7 +27,7 @@ SECRET_KEY = "django-insecure-t2qv!(lt8@q0mikr^i!1l#w4$0q-7yc&kz1@hysyazmbs19l=!
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["*"]
 
 
 # Application definition
