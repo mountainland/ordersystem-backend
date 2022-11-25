@@ -116,7 +116,7 @@ class OrderDetailApiView(APIView):
 
 class ProductListApiView(APIView):
     # add permission to check if user is authenticated
-    permission_classes = [permissions.IsAuthenticated]
+    #permission_classes = [permissions.IsAuthenticated]
 
     # 1. List all
     def get(self, request, *args, **kwargs):
@@ -129,20 +129,23 @@ class ProductListApiView(APIView):
 
     # 2. Create
     def post(self, request, *args, **kwargs):
-        '''
-        Create the Product with given Product data
-        '''
-        data = {
-            'price': request.data.get('price'), 
-            'name': request.data.get('name'),
-            'visiblity': request.data.get('visiblity')
-        }
-        serializer = ProductSerializer(data=data)
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        if permissions.IsAuthenticated:
+            '''
+            Create the Product with given Product data
+            '''
+            data = {
+                'price': request.data.get('price'), 
+                'name': request.data.get('name'),
+                'visiblity': request.data.get('visiblity')
+            }
+            serializer = ProductSerializer(data=data)
+            if serializer.is_valid():
+                serializer.save()
+                return Response(serializer.data, status=status.HTTP_201_CREATED)
 
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        else:
+            return Response(status=status.HTTP_400_BAD_REQUEST)
 class ProductDetailApiView(APIView):
     # add permission to check if user is authenticated
     permission_classes = [permissions.IsAuthenticated]

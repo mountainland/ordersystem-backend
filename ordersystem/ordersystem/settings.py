@@ -12,7 +12,7 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 
 from pathlib import Path
 
-CSRF_TRUSTED_ORIGINS = ["http://*", "https://botsarefuture-jubilant-broccoli-ww5gpr559rc54qp-8000.preview.app.github.dev"]
+CSRF_TRUSTED_ORIGINS = ["http://*", "https://botsarefuture-solid-happiness-p56jq4j774xh97p5-8000.preview.app.github.dev"]
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
