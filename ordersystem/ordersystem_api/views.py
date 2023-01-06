@@ -7,16 +7,18 @@ from .serializers import OrderSerializer, ProductSerializer
 
 class OrderListApiView(APIView):
     # add permission to check if user is authenticated
-    permission_classes = [permissions.IsAuthenticated]
+    permission_classes = []
 
     # 1. List all
     def get(self, request, *args, **kwargs):
-        '''
-        List all the Order items for given requested user
-        '''
-        Orders = Order.objects.filter(user = request.user.id)
-        serializer = OrderSerializer(Orders, many=True)
-        return Response(serializer.data, status=status.HTTP_200_OK)
+        if permissions.IsAuthenticated:
+            '''
+            List all the Order items for given requested user
+            '''
+            Orders = Order.objects.filter()
+            serializer = OrderSerializer(Orders, many=True)
+            return Response(serializer.data, status=status.HTTP_200_OK)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
     # 2. Create
     def post(self, request, *args, **kwargs):
@@ -25,8 +27,7 @@ class OrderListApiView(APIView):
         '''
         data = {
             'order': request.data.get('order'), 
-            'ready': request.data.get('ready'), 
-            'user': request.user.id
+            'ready': request.data.get('ready')
         }
         serializer = OrderSerializer(data=data)
         if serializer.is_valid():
@@ -75,21 +76,18 @@ class OrderDetailApiView(APIView):
             )
         if not 'order' in request.data:
             data = {
-            'ready': request.data.get('ready'),
-            'user': request.user.id
+            'ready': request.data.get('ready')
         }
         
         elif request.data.get('order') == "":
             data = {
-                'ready': request.data.get('ready'),
-                'user': request.user.id
+                'ready': request.data.get('ready')
             }
 
         else:
             data = {
             'order': request.data.get('order'),
-            'ready': request.data.get('ready'),
-            'user': request.user.id
+            'ready': request.data.get('ready')
         }
         serializer = OrderSerializer(instance = Order_instance, data=data, partial = True)
         if serializer.is_valid():
