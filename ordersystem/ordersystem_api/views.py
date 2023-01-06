@@ -15,7 +15,7 @@ class OrderListApiView(APIView):
             '''
             List all the Order items for given requested user
             '''
-            Orders = Order.objects.filter(user = request.user.id)
+            Orders = Order.objects.filter()
             serializer = OrderSerializer(Orders, many=True)
             return Response(serializer.data, status=status.HTTP_200_OK)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
