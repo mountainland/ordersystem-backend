@@ -9,6 +9,7 @@ class Order(models.Model):
     timestamp = models.DateTimeField(auto_now_add = True, auto_now = False, blank = True)
     ready = models.BooleanField(default = False, blank = True)
     updated = models.DateTimeField(auto_now = True, blank = True)
+    
 
     def __str__(self):
         return json.loads(self.order)
@@ -21,3 +22,8 @@ class Product(models.Model):
 
     def __str__(self):
         return json.loads(self.name)
+
+class Account(models.Model):
+    Firstname = models.CharField(max_length=30)
+    Lastname = models.CharField(max_length=40)
+    Funds = models.IntegerField()
