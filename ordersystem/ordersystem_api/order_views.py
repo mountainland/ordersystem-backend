@@ -12,14 +12,12 @@ class OrderListApiView(APIView):
 
     # 1. List all
     def get(self, request, *args, **kwargs):
-        if permissions.IsAuthenticated:
-            '''
-            List all the Order items for given requested user
-            '''
-            Orders = Order.objects.filter()
-            serializer = OrderSerializer(Orders, many=True)
-            return Response(serializer.data, status=status.HTTP_200_OK)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        '''
+        List all the Order items for given requested user
+        '''
+        Orders = Order.objects.filter()
+        serializer = OrderSerializer(Orders, many=True)
+        return Response(serializer.data, status=status.HTTP_200_OK)
 
     # 2. Create
     def post(self, request, *args, **kwargs):
@@ -28,7 +26,8 @@ class OrderListApiView(APIView):
         '''
         data = {
             'order': request.data.get('order'),
-            'ready': request.data.get('ready')
+            'ready': request.data.get('ready'),
+            'puh': request.data.get('puh')
         }
         serializer = OrderSerializer(data=data)
         if serializer.is_valid():

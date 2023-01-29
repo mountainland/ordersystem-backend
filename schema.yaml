@@ -1,0 +1,195 @@
+openapi: 3.0.2
+info:
+  title: ''
+  version: ''
+paths:
+  /ordersystem/api:
+    get:
+      operationId: listOrderListApis
+      description: ''
+      parameters: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items: {}
+          description: ''
+      tags:
+      - ordersystem
+    post:
+      operationId: createOrderListApi
+      description: Create the Order with given Order data
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema: {}
+          application/x-www-form-urlencoded:
+            schema: {}
+          multipart/form-data:
+            schema: {}
+      responses:
+        '201':
+          content:
+            application/json:
+              schema: {}
+          description: ''
+      tags:
+      - ordersystem
+  /ordersystem/api/{Order_id}/:
+    get:
+      operationId: retrieveOrderDetailApi
+      description: Retrieves the Order with given Order_id
+      parameters:
+      - name: Order_id
+        in: path
+        required: true
+        description: ''
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema: {}
+          description: ''
+      tags:
+      - ordersystem
+    put:
+      operationId: updateOrderDetailApi
+      description: Updates the Order item with given Order_id if exists
+      parameters:
+      - name: Order_id
+        in: path
+        required: true
+        description: ''
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema: {}
+          application/x-www-form-urlencoded:
+            schema: {}
+          multipart/form-data:
+            schema: {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema: {}
+          description: ''
+      tags:
+      - ordersystem
+    delete:
+      operationId: destroyOrderDetailApi
+      description: Deletes the Order item with given Order_id if exists
+      parameters:
+      - name: Order_id
+        in: path
+        required: true
+        description: ''
+        schema:
+          type: string
+      responses:
+        '204':
+          description: ''
+      tags:
+      - ordersystem
+  /ordersystem/api/products/:
+    get:
+      operationId: listProductListApis
+      description: List all the Product items for given requested user
+      parameters: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items: {}
+          description: ''
+      tags:
+      - ordersystem
+    post:
+      operationId: createProductListApi
+      description: ''
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema: {}
+          application/x-www-form-urlencoded:
+            schema: {}
+          multipart/form-data:
+            schema: {}
+      responses:
+        '201':
+          content:
+            application/json:
+              schema: {}
+          description: ''
+      tags:
+      - ordersystem
+  /ordersystem/api/product/{Product_id}:
+    get:
+      operationId: retrieveProductDetailApi
+      description: Retrieves the Product with given Product_id
+      parameters:
+      - name: Product_id
+        in: path
+        required: true
+        description: ''
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema: {}
+          description: ''
+      tags:
+      - ordersystem
+    put:
+      operationId: updateProductDetailApi
+      description: Updates the Product item with given Product_id if exists
+      parameters:
+      - name: Product_id
+        in: path
+        required: true
+        description: ''
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema: {}
+          application/x-www-form-urlencoded:
+            schema: {}
+          multipart/form-data:
+            schema: {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema: {}
+          description: ''
+      tags:
+      - ordersystem
+    delete:
+      operationId: destroyProductDetailApi
+      description: Deletes the Product item with given Product_id if exists
+      parameters:
+      - name: Product_id
+        in: path
+        required: true
+        description: ''
+        schema:
+          type: string
+      responses:
+        '204':
+          description: ''
+      tags:
+      - ordersystem
