@@ -9,6 +9,7 @@ class Order(models.Model):
     timestamp = models.DateTimeField(auto_now_add = True, auto_now = False, blank = True)
     ready = models.BooleanField(default = False, blank = True)
     updated = models.DateTimeField(auto_now = True, blank = True)
+    puh = models.CharField(max_length=50)
 
     def __str__(self):
         return json.loads(self.order)
@@ -17,7 +18,7 @@ class Product(models.Model):
     price = models.IntegerField()
     name = models.CharField(max_length=50)
     visiblity = models.BooleanField(default = True)
+    is_donation = models.BooleanField(default = True)
 
     def __str__(self):
         return json.loads(self.name)
-
