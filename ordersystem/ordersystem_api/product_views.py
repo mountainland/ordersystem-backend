@@ -21,23 +21,20 @@ class ProductListApiView(APIView):
 
     # 2. Create
     def post(self, request, *args, **kwargs):
-        if permissions.IsAuthenticated:
-            '''
-            Create the Product with given Product data
-            '''
-            data = {
-                'price': request.data.get('price'),
-                'name': request.data.get('name'),
-                'visiblity': request.data.get('visiblity')
-            }
-            serializer = ProductSerializer(data=data)
-            if serializer.is_valid():
-                serializer.save()
-                return Response(serializer.data, status=status.HTTP_201_CREATED)
+        '''
+        Create the Product with given Product data
+        '''
+        data = {
+            'price': request.data.get('price'),
+            'name': request.data.get('name'),
+            'visiblity': request.data.get('visiblity')
+        }
+        serializer = ProductSerializer(data=data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
 
-            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-        else:
-            return Response(status=status.HTTP_400_BAD_REQUEST)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
 class ProductDetailApiView(APIView):
