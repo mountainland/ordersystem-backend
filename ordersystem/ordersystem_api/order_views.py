@@ -1,9 +1,9 @@
-from rest_framework.views import APIView
-from rest_framework.response import Response
 from rest_framework import status
-from rest_framework import permissions
-from .models import Order, Product
-from .serializers import OrderSerializer, ProductSerializer
+from rest_framework.response import Response
+from rest_framework.views import APIView
+
+from .models import Order
+from .serializers import OrderSerializer
 
 
 class OrderListApiView(APIView):
@@ -12,9 +12,9 @@ class OrderListApiView(APIView):
 
     # 1. List all
     def get(self, request, *args, **kwargs):
-        '''
+        """
         List all the Order items for given requested user
-        '''
+        """
         Orders = Order.objects.filter()
         serializer = OrderSerializer(Orders, many=True)
         return Response(serializer.data, status=status.HTTP_200_OK)
@@ -39,7 +39,7 @@ class OrderListApiView(APIView):
 
 class OrderDetailApiView(APIView):
     # add permission to check if user is authenticated
-    #permission_classes = [permissions.IsAuthenticated]
+    # permission_classes = [permissions.IsAuthenticated]
 
     def get_object(self, Order_id, user_id):
         '''
