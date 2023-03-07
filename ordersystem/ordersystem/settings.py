@@ -38,9 +38,25 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-    "rest_framework",
+    "django_api_gen",
     "ordersystem_api",
+    "rest_framework",
+    "rest_framework.authtoken",
+    "api"
 ]
+
+API_GENERATOR = {
+    'products'  : "ordersystem_api.models.Product",
+    'orders': "ordersystem_api.models.Order"
+}
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.SessionAuthentication',
+        'rest_framework.authentication.TokenAuthentication',
+    ],
+}
+
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
